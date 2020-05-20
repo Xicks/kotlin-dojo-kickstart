@@ -1,0 +1,10 @@
+echo "==> Compiling..."
+kotlinc -nowarn main.kt solution.kt test.kt utils.kt
+if [ $? -eq 0 ] 
+then 
+    echo "==> Compiled successfully" 
+else 
+    echo "==> Compilation error" 
+    exit 
+fi
+kotlin MainKt $1
