@@ -1,10 +1,16 @@
 echo "==> Compiling..."
-kotlinc -nowarn main.kt solution.kt test.kt utils.kt
-if [ $? -eq 0 ] 
+STARTTIME=$(date +%s%N)
+kotlinc -nowarn assertions.kt logger.kt solution.kt test.kt main.kt
+ENDTIME=$(date +%s%N)
+if [ $? -eq 0 ]
 then 
-    echo "==> Compiled successfully" 
+    echo "==> Compiled successfully in $((($ENDTIME - $STARTTIME) / 1000000)) milliseconds..."
 else 
     echo "==> Compilation error" 
     exit 
 fi
+STARTTIME=$(date +%s%N)
+echo -e "\n==> Executing tests..."
 kotlin MainKt $1
+ENDTIME=$(date +%s%N)
+echo "==> Finished tests in $((($ENDTIME - $STARTTIME) / 1000000)) milliseconds."
