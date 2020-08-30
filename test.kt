@@ -1,3 +1,5 @@
+import dojo.test.*
+
 object TestCases {
 
     // Equals
